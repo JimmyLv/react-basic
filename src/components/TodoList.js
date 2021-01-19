@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, List, Row } from "antd";
+import { Button, Form, Input, List } from "antd";
 import { useLocalStorageState } from "../hooks/useLocalStorageState";
 import { TodoItem } from "./TodoItem";
 
@@ -6,7 +6,7 @@ export function TodoList() {
   const [todo, setTodo] = useLocalStorageState("todo");
   const [todos, setTodos] = useLocalStorageState("todos", []);
 
-  function addTodo() {
+  function addTodo({ todo }) {
     const newTodo = { id: +new Date(), text: todo, completed: false };
     setTodos([...todos, newTodo]);
     setTodo("");
@@ -26,21 +26,21 @@ export function TodoList() {
 
   return (
     <div>
-      <Form onFinish={addTodo}>
-        <Row>
-          <Col>
-            <Input
-              value={todo}
-              onChange={(e) => setTodo(e.target.value)}
-              placeholder={"add your todo"}
-            />
-          </Col>
-          <Col>
-            <Button type="primary" htmlType="submit">
-              Add
-            </Button>
-          </Col>
-        </Row>
+      <Form onFinish={addTodo} onValuesChange={({ todo }) => setTodo(todo)}>
+        <Form.Item
+          label="Todo"
+          name="todo"
+          rules={[{ required: true, message: "Please input your todo!" }]}
+          initialValue={todo}
+        >
+          <Input placeholder="add your todo" />
+        </Form.Item>
+
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Add Todo
+          </Button>
+        </Form.Item>
       </Form>
       <List
         bordered
