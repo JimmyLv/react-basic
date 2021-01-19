@@ -1,4 +1,4 @@
-import { Button, Layout } from "antd";
+import { Button, Card, Layout } from "antd";
 import React from "react";
 import "./App.css";
 import CharacterCount from "./components/CharCounter";
@@ -32,26 +32,28 @@ function App() {
           <Content style={{ minHeight: "80vh", padding: "20px" }}>
             <TodoList />
 
-            <Link>{username}</Link>
-            <CharacterCount text={username} />
-            <form onSubmit={handleSubmit}>
-              <FormItem
-                label="Username"
-                value={username}
-                onChange={setUsername}
-                placeholder="please input your username..."
-              />
-              <FormItem
-                label="Age"
-                type="number"
-                value={age}
-                onChange={setAge}
-                placeholder="what's your age?"
-              />
-              <Button type="primary" htmlType="submit">
-                Say Hi!
-              </Button>
-            </form>
+            <Card>
+              <Link>{username}</Link>
+              <CharacterCount text={username} />
+              <form onSubmit={handleSubmit}>
+                <FormItem
+                  label="Username"
+                  value={username}
+                  onChange={setUsername}
+                  placeholder="please input your username..."
+                />
+                <FormItem
+                  label="Age"
+                  type="number"
+                  value={age}
+                  onChange={setAge}
+                  placeholder="what's your age?"
+                />
+                <Button type="primary" htmlType="submit">
+                  Say Hi!
+                </Button>
+              </form>
+            </Card>
           </Content>
         </Layout>
         <Footer>Footer</Footer>

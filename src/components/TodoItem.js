@@ -1,23 +1,25 @@
-import { CloseOutlined } from "@ant-design/icons";
-import { Popconfirm } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
+import { Col, Popconfirm, Row } from "antd";
 
 export function TodoItem({ todo, toggleTodo, deleteTodo }) {
   return (
-    <div>
-      <span
+    <Row justify="space-between">
+      <Col
         style={{ textDecoration: todo.completed ? "line-through" : "none" }}
         onClick={toggleTodo}
       >
         {todo.text}
-      </span>
-      <Popconfirm
-        title="Are you sure to delete this todo?"
-        onConfirm={deleteTodo}
-        okText="Yes"
-        cancelText="No"
-      >
-        <CloseOutlined />
-      </Popconfirm>
-    </div>
+      </Col>
+      <Col>
+        <Popconfirm
+          title="Are you sure to delete this todo?"
+          onConfirm={deleteTodo}
+          okText="Yes"
+          cancelText="No"
+        >
+          <DeleteOutlined />
+        </Popconfirm>
+      </Col>
+    </Row>
   );
 }

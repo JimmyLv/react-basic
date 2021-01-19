@@ -33,7 +33,7 @@ export function TodoList() {
         bordered
         dataSource={[...todos].reverse()}
         renderItem={(item) => (
-          <List.Item>
+          <List.Item style={{ display: "block" }}>
             <TodoItem
               todo={item}
               toggleTodo={() => toggleTodo(item)}
