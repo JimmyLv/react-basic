@@ -1,10 +1,9 @@
-.App {
-  text-align: center;
-}
+@import '~antd/dist/antd.css';
 
 .App-logo {
-  height: 40vmin;
+  height: 40px;
   pointer-events: none;
+  display: inline-block;
 }
 
 @media (prefers-reduced-motion: no-preference) {

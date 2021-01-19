@@ -1,3 +1,4 @@
+import { Button, Layout } from "antd";
 import React from "react";
 import "./App.css";
 import CharacterCount from "./components/CharCounter";
@@ -5,6 +6,8 @@ import FormItem from "./components/FormItem";
 import { Link } from "./components/Link";
 import { useLocalStorageState } from "./hooks/useLocalStorageState";
 import logo from "./logo.svg";
+
+const { Header, Footer, Sider, Content } = Layout;
 
 function App() {
   const [username, setUsername] = useLocalStorageState("username", "React");
@@ -17,30 +20,37 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Link>{username}</Link>
-        <CharacterCount text={username} />
-        <form onSubmit={handleSubmit}>
-          <FormItem
-            label="Username"
-            value={username}
-            onChange={setUsername}
-            placeholder="please input your username..."
-          />
-          <FormItem
-            label="Age"
-            type="number"
-            value={age}
-            onChange={setAge}
-            placeholder="what's your age?"
-          />
-          <button type="submit">Say Hi!</button>
-        </form>
-      </header>
+      <Layout>
+        <Header>
+          <img src={logo} className="App-logo" alt="logo" />
+        </Header>
+        <Layout>
+          <Sider theme="light" width={100}>
+            Sider
+          </Sider>
+          <Content style={{ minHeight: "80vh", padding: "20px" }}>
+            <Link>{username}</Link>
+            <CharacterCount text={username} />
+            <form onSubmit={handleSubmit}>
+              <FormItem
+                label="Username"
+                value={username}
+                onChange={setUsername}
+                placeholder="please input your username..."
+              />
+              <FormItem
+                label="Age"
+                type="number"
+                value={age}
+                onChange={setAge}
+                placeholder="what's your age?"
+              />
+              <Button type="primary">Say Hi!</Button>
+            </form>
+          </Content>
+        </Layout>
+        <Footer>Footer</Footer>
+      </Layout>
     </div>
   );
 }
