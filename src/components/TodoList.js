@@ -1,16 +1,18 @@
-import { Button, Form, Input, List } from "antd";
+import { List } from "antd";
 import { useLocalStorageState } from "../hooks/useLocalStorageState";
+import { AddTodo } from "./AddTodo";
 import { TodoItem } from "./TodoItem";
 
 export function TodoList() {
   const [todo, setTodo] = useLocalStorageState("todo");
-  const [todos, setTodos] = useLocalStorageState("todos", []);
 
   function addTodo({ todo }) {
     const newTodo = { id: +new Date(), text: todo, completed: false };
     setTodos([...todos, newTodo]);
     setTodo("");
   }
+  const [todos, setTodos] = useLocalStorageState("todos", []);
+
   function toggleTodo(todo) {
     setTodos(
       todos.map((item) => ({
@@ -26,22 +28,7 @@ export function TodoList() {
 
   return (
     <div>
-      <Form onFinish={addTodo} onValuesChange={({ todo }) => setTodo(todo)}>
-        <Form.Item
-          label="Todo"
-          name="todo"
-          rules={[{ required: true, message: "Please input your todo!" }]}
-          initialValue={todo}
-        >
-          <Input placeholder="add your todo" />
-        </Form.Item>
-
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Add Todo
-          </Button>
-        </Form.Item>
-      </Form>
+      <AddTodo addTodo={addTodo} setTodo={setTodo} todo={todo} />
       <List
         bordered
         dataSource={[...todos].reverse()}
