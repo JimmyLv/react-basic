@@ -1,12 +1,12 @@
-import { Button, Layout } from 'antd'
-import React from 'react'
-import './App.css'
-import CharacterCount from './components/CharCounter'
-import FormItem from './components/FormItem'
-import { Link } from './components/Link'
-import { TodoList } from './components/TodoList'
-import { useLocalStorageState } from './hooks/useLocalStorageState'
-import logo from './logo.svg'
+import { Button, Layout } from "antd";
+import React from "react";
+import "./App.css";
+import CharacterCount from "./components/CharCounter";
+import FormItem from "./components/FormItem";
+import { Link } from "./components/Link";
+import { TodoList } from "./components/TodoList";
+import { useLocalStorageState } from "./hooks/useLocalStorageState";
+import logo from "./logo.svg";
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -16,7 +16,7 @@ function App() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    alert(`hello ${username}`);
+    alert(`hello ${username}, age ${age}`);
   }
 
   return (
@@ -30,9 +30,10 @@ function App() {
             Sider
           </Sider>
           <Content style={{ minHeight: "80vh", padding: "20px" }}>
+            <TodoList />
+
             <Link>{username}</Link>
             <CharacterCount text={username} />
-            <TodoList />
             <form onSubmit={handleSubmit}>
               <FormItem
                 label="Username"
@@ -47,7 +48,9 @@ function App() {
                 onChange={setAge}
                 placeholder="what's your age?"
               />
-              <Button type="primary">Say Hi!</Button>
+              <Button type="primary" htmlType="submit">
+                Say Hi!
+              </Button>
             </form>
           </Content>
         </Layout>
