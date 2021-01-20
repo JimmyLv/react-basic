@@ -1,4 +1,4 @@
-import { number } from 'prop-types'
+import * as PropTypes from 'prop-types'
 
 export function Link({ href = 'https://blog.jimmylv.info', children }) {
   return (
@@ -18,5 +18,5 @@ Link.defaultProps = {
 }
 
 Link.propTypes = {
-  href: number.isRequired
+  href: PropTypes.string.isRequired
 }
