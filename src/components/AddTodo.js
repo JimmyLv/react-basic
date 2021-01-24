@@ -1,7 +1,9 @@
 import { useLocalStorageValue } from "../hooks/useLocalStorageValue";
+import { useTasks } from "../hooks/useTodo";
 
-export function AddTodo({ addTodo }) {
+export function AddTodo() {
   const [newTodo, setNewTodo] = useLocalStorageValue("todo");
+  const { addTodo } = useTasks();
 
   return (
     <div>
