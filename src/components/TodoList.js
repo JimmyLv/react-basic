@@ -15,10 +15,21 @@ export default function TodoList() {
       },
     ]);
   }
+
+  function toggleTodo(todo) {
+    console.log('todo', todo)
+    setTodos(
+      todos.map((item) => ({
+        ...item,
+        completed: item.id === todo.id ? !item.completed : item.completed,
+      }))
+    );
+  }
+
   return (
     <div>
       <AddTodo addTodo={addTodo} />
-      <Todos todos={todos} />
+      <Todos todos={todos} toggleTodo={toggleTodo} />
     </div>
   );
 }
