@@ -17,7 +17,6 @@ export default function TodoList() {
   }
 
   function toggleTodo(todo) {
-    console.log('todo', todo)
     setTodos(
       todos.map((item) => ({
         ...item,
@@ -25,11 +24,14 @@ export default function TodoList() {
       }))
     );
   }
+  function deleteTodo(todo) {
+    setTodos(todos.filter((item) => item.id !== todo.id));
+  }
 
   return (
     <div>
       <AddTodo addTodo={addTodo} />
-      <Todos todos={todos} toggleTodo={toggleTodo} />
+      <Todos todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
     </div>
   );
 }

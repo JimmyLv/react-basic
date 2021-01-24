@@ -1,6 +1,6 @@
 import { TodoItem } from "./TodoItem";
 
-export function Todos({ todos = [], toggleTodo }) {
+export function Todos({ todos = [], toggleTodo, deleteTodo }) {
   return (
     <div>
       <ul>
@@ -9,6 +9,7 @@ export function Todos({ todos = [], toggleTodo }) {
             item={item}
             key={item.id}
             toggleTodo={() => toggleTodo(item)}
+            deleteTodo={() => deleteTodo(item)}
           />
         ))}
       </ul>
