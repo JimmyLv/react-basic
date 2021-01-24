@@ -1,27 +1,35 @@
+import { Button, Form, Input } from "antd";
 import { useLocalStorageValue } from "../hooks/useLocalStorageValue";
 import { useTasks } from "../hooks/useTodo";
 
 export function AddTodo() {
   const [newTodo, setNewTodo] = useLocalStorageValue("todo");
   const { addTodo } = useTasks();
-
   return (
-    <div>
-      <input
-        value={newTodo}
-        onChange={(e) => {
-          setNewTodo(e.target.value);
-        }}
-        type="text"
-      />
-      <button
-        onClick={() => {
-          addTodo(newTodo);
-          setNewTodo("");
-        }}
+    <Form
+      onFinish={(values) => {
+        console.log("values", values);
+        addTodo(values.todo);
+      }}
+      onValuesChange={({ todo }) => {
+        console.log("todo", todo);
+        setNewTodo(todo);
+      }}
+      initialValues={{ todo: newTodo }}
+    >
+      <Form.Item
+        label="Todo"
+        name="todo"
+        rules={[{ required: true, message: "Please input your todo!" }]}
       >
-        Add
-      </button>
-    </div>
+        <Input placeholder="Please add your todo" />
+      </Form.Item>
+
+      <Form.Item>
+        <Button type="primary" htmlType="submit">
+          Add Todo
+        </Button>
+      </Form.Item>
+    </Form>
   );
 }

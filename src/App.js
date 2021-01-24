@@ -1,9 +1,12 @@
+import { Layout } from "antd";
 import React from "react";
 import "./App.css";
 import TodoList from "./components/TodoList";
 import { useLocalStorageValue } from "./hooks/useLocalStorageValue";
 import logo from "./logo.svg";
-import TaskContext, {TaskProvider} from './hooks/useTodo'
+import TaskContext, { TaskProvider } from "./hooks/useTodo";
+
+const { Header, Content, Sider } = Layout;
 
 function App() {
   const [name, setName] = useLocalStorageValue("name", "React");
@@ -16,35 +19,16 @@ function App() {
 
   return (
     <div className="App">
-      <img src={logo} className="App-logo" alt="logo" />
-
-      <TaskProvider>
-        <TodoList />
-      </TaskProvider>
-      <hr />
-      <div>Hello World!</div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="age">Age</label>
-          <input
-            type="number"
-            id="age"
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
-          />
-        </div>
-
-        <button type="submit">Hello</button>
-      </form>
+      <Header theme="light">
+        <img src={logo} className="App-logo" alt="logo" />
+      </Header>
+      <Content>
+        <TaskProvider>
+          <TodoList />
+        </TaskProvider>
+        <hr />
+      </Content>
+      <Sider>Sider</Sider>
     </div>
   );
 }
