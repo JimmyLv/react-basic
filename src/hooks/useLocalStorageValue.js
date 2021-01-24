@@ -1,14 +1,14 @@
-import React from 'react'
+import React from "react";
 
-export function useLocalStorageValue(key, initValue = '') {
+export function useLocalStorageValue(key, initValue = "") {
   const [value, setValue] = React.useState(
-    localStorage.getItem(key) || initValue,
-  )
+    JSON.parse(localStorage.getItem(key)) || initValue
+  );
 
   React.useEffect(() => {
-    localStorage.setItem(key, value)
-  }, [key, value])
+    localStorage.setItem(key, JSON.stringify(value));
+  }, [key, value]);
   // props, state
 
-  return [value, setValue]
+  return [value, setValue];
 }

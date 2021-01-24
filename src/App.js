@@ -1,5 +1,6 @@
 import React from 'react'
 import './App.css'
+import TodoList from './components/TodoList'
 import { useLocalStorageValue } from './hooks/useLocalStorageValue'
 import logo from './logo.svg'
 
@@ -15,6 +16,10 @@ function App() {
   return (
     <div className="App">
       <img src={logo} className="App-logo" alt="logo" />
+
+      <TodoList />
+
+      <hr/>
       <div>Hello World!</div>
       <form onSubmit={handleSubmit}>
         <div>
