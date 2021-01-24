@@ -1,10 +1,11 @@
-import React from "react";
-import "./App.css";
-import logo from "./logo.svg";
+import React from 'react'
+import './App.css'
+import { useLocalStorageValue } from './hooks/useLocalStorageValue'
+import logo from './logo.svg'
 
 function App() {
-  const [name, setName] = React.useState("");
-  const [age, setAge] = React.useState(0);
+  const [name, setName] = useLocalStorageValue("name", "React");
+  const [age, setAge] = useLocalStorageValue("age", 0);
 
   function handleSubmit(e) {
     e.preventDefault();
